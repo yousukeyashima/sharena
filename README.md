@@ -21,5 +21,17 @@
 
 ## 設計書
 
+### 画面設計図
+https://drive.google.com/file/d/1hKaVD4QWHm9QseN-rtEXYe10C7vXpJIX/view?usp=sharing
+
+### ワイヤーフレーム
+https://drive.google.com/file/d/1a8hT336H7hS4tpw9DvxDGKOhnSVXSiNs/view?usp=sharing
+
+### ER図
+https://drive.google.com/file/d/1UvzibjJTftltsxhp_8p9Rv7bAIBGkbgJ/view?usp=sharing
+
+### テーブル定義書
+https://drive.google.com/file/d/1Wkr5iynjDlzg7x2DAD3yxuJi9cqJI7yr/view?usp=sharing
+
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1FwGeyDXRhpVmVudk_3rvR7NlgoyQp4fzapgFj9YEys8/edit?usp=sharing
