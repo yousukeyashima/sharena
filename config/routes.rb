@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   end
 
   root 'restaurants#index'
-  resources :restaurants, only: [:show, :create, :edit, :update, :destory] do
+  get '/map_request', to: 'restaurants#map', as: 'map_request'
+  resources :restaurants do
     resource :favorites
     resources :post_comments
   end

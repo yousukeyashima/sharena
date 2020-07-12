@@ -1,0 +1,39 @@
+<h2>gmap</h2>
+<!-- form_withはデフォルトでremote: trueの挙動になります -->
+<%= form_with url: map_request_path, method: :get do |f|%>
+  <%= f.text_field :address %>
+  <%= f.submit '地図表示' %>
+<% end %>
+
+<div id="map">
+</div>
+
+<style>
+#map{
+  height: 400px;
+}
+</style>
+
+<script>
+//Map表示
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%= raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setCenter(new google.maps.LatLng( 34.6873153, 135.52620130000003)); //初期位置設定
+    handler.getMap().setZoom(11); //拡大率設定
+  });
+
+
+  /*
+  let mapInstance //この変数はmap.js.erbでも使うのでタイプミスに注意
+
+  function initMap(){
+    mapInstance = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 34.6873153, lng: 135.52620130000003},
+    zoom: 11
+    });
+  };
+  */
+  </script>

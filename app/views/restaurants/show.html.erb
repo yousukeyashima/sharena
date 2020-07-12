@@ -1,8 +1,5 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<% @restaurants.each do |restaurant| %>
-<%= restaurant.name %>
-<% end %>
+<p>show</p>
+<h2><%= @restaurant.name %></h2>
 <div id="map">
 </div>
 
@@ -19,7 +16,7 @@
     markers = handler.addMarkers(<%= raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
-    // handler.getMap().setCenter(new google.maps.LatLng(<%= @latitude %>, <%= @longitude %>)); //初期位置設定
-    // handler.getMap().setZoom(15); //拡大率設定
+    handler.getMap().setCenter(new google.maps.LatLng(<%= @latitude %>, <%= @longitude %>)); //初期位置設定
+    handler.getMap().setZoom(15); //拡大率設定
   });
 </script>

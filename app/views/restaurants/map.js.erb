@@ -1,0 +1,19 @@
+/* 
+index.html.erbのscript内に
+google mapのインスタンス変数である、
+mapという変数があることに留意
+*/
+
+(function(){
+  // 位置情報をもつ変数を用意
+  let pos = new google.maps.LatLng(
+   <%= @latlng[0] %>, //latitude
+   <%= @latlng[1] %>  //longitude
+  );
+
+  mapInstance.setCenter(pos)
+  let marker = new google.maps.Marker({
+    map: mapInstance,
+    position: pos
+  });
+})()
