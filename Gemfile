@@ -70,4 +70,9 @@ gem 'jquery-rails'
 gem 'kaminari','~> 1.2.1'
 gem 'geocoder'
 gem 'gmaps4rails'
+
+#deploy
 gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
