@@ -1,0 +1,5 @@
+<!-- コメント入力フォーム ------------------------------------------------------------>
+<%= form_with(model: [restaurant, post_comment], url: restaurant_post_comments_path(@restaurant) ) do |f| %>
+    <%= f.text_area :comment, class: "input-mysize" %>
+    <%= f.submit "送信", class: "btn btn-outline-dark comment-submit float-right" %>
+<% end %>

@@ -1,0 +1,4 @@
+//投稿一覧いいね差し替え
+$("#index_favorite_<%= @restaurant.id %>").html("<%= j(render partial: 'favorites/favorite', locals: { restaurant: @restaurant}) %>");
+//投稿詳細いいね差し替え
+$("#show_favorite_<%= @restaurant.id %>").html("<%= j(render partial: 'favorites/favorite', locals: { restaurant: @restaurant}) %>");

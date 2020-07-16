@@ -23,3 +23,20 @@
     // handler.getMap().setZoom(15); //拡大率設定
   });
 </script>
+
+<!-- フォロー機能 -->
+<div class="follower">
+      <%= link_to followers_user_path(@user.id) do %>
+          <h5 style="color: black;">フォロワー<%= @user.followers.count %>人</h5>
+      <% end %>
+  </div>
+  <div class="follow">
+      <%= link_to followed_user_path(@user.id) do %>
+                <h5 style="color: black;">フォロー<%= @user.followed.count %>人</h5>
+      <% end %>
+  </div>
+  <div>
+      <%= render "follow_form" %>
+  </div>
+
+

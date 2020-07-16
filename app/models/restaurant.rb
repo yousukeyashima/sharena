@@ -8,13 +8,12 @@ class Restaurant < ApplicationRecord
 
   attachment :restaurant_image
   belongs_to :user
-  has_many :post_comments#, dependent: :destroy
-  has_many :favorites#, dependent: :destory
+  #コメント機能
+  has_many :post_comments, dependent: :destroy
+  #いいね機能
+  has_many :favorites, dependent: :destroy
 
   validates :name, presence: true
   validates :address, presence: true
 
-  def faorites_by?(user)
-    favorites.where(user_id: user.id).exists?
-  end
 end

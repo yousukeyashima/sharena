@@ -11,6 +11,9 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @comment = PostComment.new
+    @comments =@restaurant.post_comments.order(created_at: :desc) #新着順で表示
+    #mapにmarker設置
     @latitude = @restaurant.latitude
     @longitude = @restaurant.longitude
     @hash = Gmaps4rails.build_markers(@restaurant) do |restaurant, marker|
