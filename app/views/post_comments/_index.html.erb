@@ -1,26 +1,23 @@
 <!-- コメント内容(3件) ------------------------------------------------------------------>
-<!--<%= post_comments.count %>件コメント-->
-<!-- <h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6> -->
+<%= post_comments.count %>件コメント
+<h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
 <% post_comments.first(3).each do |comment| %>
   <% unless comment.id.nil? %>
     <li class="comment-container">
         <div class="comment-box">
-            <!--<div class="comment-avatar">
-                <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpg", class:"comment-image", size: "40x40" %>
-            </div> -->
             <div class="comment-text">
-                <p>ユーザー名：<%= link_to "@#{comment.user.name}", user_path(comment.user.id) %></p>
+                ユーザー名：<%= link_to "#{comment.user.name}", user_path(comment.user.id) %>　<%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpg", class:"img-circle", size: "40x40" %>
                 <div class="comment-entry">
-                    <%= comment.comment %>
+                   <%= comment.comment %>
                     <% if comment.user == current_user %>
                         <%= link_to restaurant_post_comment_path(comment.restaurant_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
                             <i class="fas fa-trash" style="color: black;"></i>
                         <% end %>
                     <% end %>
-                </div>
-                <span class="comment-date pull-right">
+                    <span class="comment-date pull-right">
                       <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-                </span>
+                    </span>
+                </div>
             </div>
         </div>
     </li>
@@ -32,22 +29,19 @@
               <% unless comment.id.nil? %>
                 <li class="comment-container">
                     <div class="comment-box">
-                        <div class="comment-avatar">
-                            <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpg", class:"comment-image", size: "40x40" %>
-                        </div>
                         <div class="comment-text">
-                            <p><%= link_to "@#{comment.user.name}", user_path(comment.user.id) %></p>
+                            ユーザー名：<%= link_to "#{comment.user.name}", user_path(comment.user.id) %>　<%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpg", class:"img-circle", size: "40x40" %>
                             <div class="comment-entry">
-                                <%= comment.comment %>
+                               <%= comment.comment %>
                                 <% if comment.user == current_user %>
                                     <%= link_to restaurant_post_comment_path(comment.restaurant_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
                                         <i class="fas fa-trash" style="color: black;"></i>
                                     <% end %>
                                 <% end %>
-                            </div>
-                            <span class="comment-date pull-right">
+                                <span class="comment-date pull-right">
                                   <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-                            </span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </li>

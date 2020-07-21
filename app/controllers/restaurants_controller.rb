@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     #投稿絞り込みや地図絞り込みがない場合、全店表示
@@ -63,9 +64,6 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  def catalog
-  end
-
   def search_location
     if params[:latitude].nil? && params[:longitude].nil?
       @latitude = 34.6873153
@@ -87,7 +85,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     @user = User.find_by(id: @restaurant.user_id)
     @comment = PostComment.new
-    @comments =@restaurant.post_comments.order(created_at: :desc) #新着順で表示
+    @comments =@restaurant.post_comments#.order(created_at: :desc) #新着順で表示
     #mapにmarker設置
     @latitude = @restaurant.latitude
     @longitude = @restaurant.longitude
@@ -112,10 +110,24 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def edit
+    @restaurant = Restaurant.find(params[:id])
+  end
+
   def update
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.update(restaurant_params)
+    redirect_to restaurant_path(@restaurant.id)
   end
 
   def destroy
+    @restaurant = Restaurant.find(params[:id])
+    unless @restaurant.user_id == current_user.id
+      redirect_to restaurant_path(@restaurant.id)
+    else
+      @restaurant.destroy
+      redirect_to restaurants_path
+    end
   end
 
   def map

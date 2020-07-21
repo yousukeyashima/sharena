@@ -10,8 +10,10 @@
         </div>
         <div class="user-edits">
           <h4 class="sideby">登録情報</h4>
+          <% if current_user %>
           <% if @user.id == current_user.id %>
             <%= link_to "編集", edit_user_path, class: "btn btn-default sideby" %>
+          <% end %>
           <% end %>
           </div>
         </div>

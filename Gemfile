@@ -70,6 +70,7 @@ gem 'jquery-rails'
 gem 'kaminari','~> 1.2.1'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'rails-i18n'
 
 #deploy
 gem 'dotenv-rails'

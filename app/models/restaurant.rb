@@ -16,10 +16,10 @@ class Restaurant < ApplicationRecord
   validates :name, presence: true
   validates :address, presence: true
 
-    def self.within_box(distance, latitude, longitude)
-      distance = distance
-      center_point = [latitude, longitude]
-      box = Geocoder::Calculations.bounding_box(center_point, distance)
-      within_bounding_box(box)
-    end
+    # def self.within_box(distance, latitude, longitude)
+    #   distance = distance
+    #   center_point = [latitude, longitude]
+    #   box = Geocoder::Calculations.bounding_box(center_point, distance)
+    #   within_bounding_box(box)
+    # end
 end

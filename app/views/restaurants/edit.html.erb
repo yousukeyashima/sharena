@@ -1,0 +1,74 @@
+
+<%= form_with model: @restaurant, url: restaurant_path(params[:id]), method: :put,local: true do |f| %>
+  <% if @restaurant.errors.any? %>
+    <div id="error_explanation">
+      <h2 class="alert alert-danger"><%= @restaurant.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @restaurant.errors.full_messages.each do |msg| %>
+        <li class="alert alert-danger"><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class ="container">
+  <div class= "row">
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-4">
+    <h3>
+      <mark>投稿店舗の編集</mark>
+    </h3>
+    <div class="form-group row">
+      <%= attachment_image_tag @restaurant, :restaurant_image, class: "img-square",id: :img_prev, fallback: "no_image.jpg", size:"300x300" %><br>
+  </div>
+
+  <div class="form-group row">
+    <%= f.attachment_field :restaurant_image, id: :restaurant_img %>
+  </div>
+   </div>
+
+  <script type="text/javascript">
+    $(function() {
+      function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        $('#img_prev').attr('src', e.target.result);
+        }
+       reader.readAsDataURL(input.files[0]);
+      }
+     }
+    $("#restaurant_img").change(function(){
+        readURL(this);
+     });
+    });
+  </script>
+  <div class="col-md-1">
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group row">
+      <%= f.label :name, '店名' %>
+      <%= f.text_field :name, placeholder: @restaurant.name, class: "form-control offset-1 col-5" %><br>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :description, '説明' %>
+      <%= f.text_area :description, placeholder: @restaurant.description, class: "form-control offset-1 col-5" %><br>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :address, '住所' %>
+      <%= f.text_field :address, placeholder: @restaurant.address, class: "form-control offset-1 col-4" %><br>
+    </div>
+
+    <div class="actions">
+      <%= f.submit '変更を保存', class: "btn btn-success" %>
+    </div>
+    </div>
+  </div>
+  </div>
+    </div>
+<% end %>

@@ -2,6 +2,12 @@
 <article id ="detail">
 
   <h2><%= @restaurant.name %></h2>
+    <% if current_user %>
+      <% if @user.id == current_user.id %>
+        <%= link_to "編集", edit_restaurant_path(@restaurant.id), class: "btn btn-default sideby" %>
+        <%= link_to "投稿を削除", restaurant_path(@restaurant.id), method: :delete, data: { confirm: "一度削除すると元には戻せません。本当に削除してもいいですか？"}, class: "btn btn-danger pull-right" %>
+      <% end %>
+    <% end %>
 
   <div class="content">
     <div class="container">
