@@ -12,8 +12,23 @@
     </div>
   <% end %>
 
-  <%= attachment_image_tag @restaurant, :restaurant_image, :fill, 60, 60, id: :img_prev, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %><br>
-  <%= f.attachment_field :restaurant_image, placeholder: "画像", id: :user_img, class: "user-edit-form" %>
+  <div class ="container">
+  <div class= "row">
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-4">
+    <h3>
+      <mark>新規登録</mark>
+    </h3>
+    <div class="form-group row">
+      <%= attachment_image_tag @restaurant, :restaurant_image, class: "img-square",id: :img_prev, fallback: "no_image.jpg", size:"300x300" %><br>
+  </div>
+
+  <div class="form-group row">
+    <%= f.attachment_field :restaurant_image, id: :restaurant_img %>
+  </div>
+   </div>
 
   <script type="text/javascript">
     $(function() {
@@ -26,20 +41,35 @@
        reader.readAsDataURL(input.files[0]);
       }
      }
-    $("#user_img").change(function(){
+    $("#restaurant_img").change(function(){
         readURL(this);
      });
     });
   </script>
+  <div class="col-md-1">
+  </div>
 
-  <%= f.label :name %>
-  <%= f.text_field :name, placeholder: "店名" %>
+  <div class="col-md-4">
+    <div class="form-group row">
+      <%= f.label :name, '店名' %>
+      <%= f.text_field :name, class: "form-control offset-1 col-5" %><br>
+    </div>
 
-  <%= f.label :description %>
-  <%= f.text_area :description, placeholder: "紹介文" %>
+    <div class="form-group row">
+      <%= f.label :description, '説明' %>
+      <%= f.text_area :description, class: "form-control offset-1 col-5" %><br>
+    </div>
 
-  <%= f.label :address %>
-  <%= f.text_field :address, placeholder: "住所", class: "address" %>
+    <div class="form-group row">
+      <%= f.label :address, '住所' %>
+      <%= f.text_field :address, class: "form-control offset-1 col-4" %><br>
+    </div>
 
-  <%= f.submit "投稿", class: "btn btn-lg btn-block btn-base-1 mt-20" %>
+    <div class="actions">
+      <%= f.submit '新規登録', class: "btn btn-default" %>
+    </div>
+    </div>
+  </div>
+  </div>
+    </div>
 <% end %>

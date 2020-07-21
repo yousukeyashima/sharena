@@ -16,19 +16,31 @@
     <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script>
 
   </head>
-    <div>
-      <%= link_to "sharena", root_path %>
-    </div>
-    <nav>
-      <ul>
-      <% if user_signed_in? %>
-        <li><%= link_to "新規投稿", new_restaurant_path %></li>
-      <% else %>
-        <li><%= link_to "新規登録", new_user_registration_path %></li>
-        <li><%= link_to "ログイン", new_user_session_path %></li>
-      <% end %>
-      </ul>
+
+  <header>
+    <nav class="navbar navbar-expand">
+      <div class="container">
+        <div class="navbar-header">
+          <div class="navbar-brand">
+            <%= link_to "-sharena-", root_path %></div>
+          </div>
+          <div class="navbar-nav navbar-right">
+            <% if user_signed_in? %>
+            <ul class="list-inline">
+              <li>ようこそ <%= current_user.name %>さん！</li>
+              <li><%= link_to "新規投稿", new_restaurant_path %></li>
+              <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "新規登録", new_user_registration_path %></li>
+              <li><%= link_to "ログイン", new_user_session_path %></li>
+            </ul>
+            <% end %>
+        </div>
+      </div>
     </nav>
+  </header>
+
    <body>
     <%= yield %>
   </body>

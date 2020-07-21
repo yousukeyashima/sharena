@@ -1,15 +1,15 @@
 <!-- コメント内容(3件) ------------------------------------------------------------------>
-<%= post_comments.count %>件コメント
-<h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6>
+<!--<%= post_comments.count %>件コメント-->
+<!-- <h6 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h6> -->
 <% post_comments.first(3).each do |comment| %>
   <% unless comment.id.nil? %>
     <li class="comment-container">
         <div class="comment-box">
-            <div class="comment-avatar">
+            <!--<div class="comment-avatar">
                 <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpg", class:"comment-image", size: "40x40" %>
-            </div>
+            </div> -->
             <div class="comment-text">
-                <p><%= link_to "@#{comment.user.name}", user_path(comment.user.id) %></p>
+                <p>ユーザー名：<%= link_to "@#{comment.user.name}", user_path(comment.user.id) %></p>
                 <div class="comment-entry">
                     <%= comment.comment %>
                     <% if comment.user == current_user %>

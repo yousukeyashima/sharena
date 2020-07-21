@@ -5,7 +5,9 @@ Rails.application.routes.draw do
           get :followed, :followers
     end
   end
-  resources :relationships, only: [:create, :destory]
+  resources :relationships, only: [:create, :destroy]
+
+  get '/restaurants/search_location', to: "restaurants#search_location"
 
   root 'restaurants#index'
   get '/map_request', to: 'restaurants#map', as: 'map_request'

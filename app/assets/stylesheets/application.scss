@@ -15,3 +15,361 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+/* 共通部分(body/header/footer)始まり */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #EEEEEE;
+  color: #333333;
+  font-size: 15px;
+  line-height: 2;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 15px;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: rgb(110, 169, 036);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(110, 169, 036);
+  border-bottom: 2px solid #FF6600;
+  padding-bottom: 3px;
+  text-decoration: none;
+}
+
+header {
+  background-color: #ffffff;
+  height: 50px;
+  margin: 0 auto;
+  border-bottom: solid #FF6600;
+}
+
+.logo {
+  float: left;
+  font-size: 25px;
+  margin-bottom: 0;
+}
+
+.logo a {
+  margin-left: 5px;
+}
+
+h2 {
+  padding-left: 5px;
+  margin-top: 15px;
+}
+
+/*  ヘッダー
+-------------------------------------------*/
+.navbar {
+  margin-bottom: 0 !important;
+  border: none !important;
+  border-bottom: 14px solid black !important;
+  border-radius: 0 !important;
+  background-color: #fff;
+}
+.navbar-brand a, .navbar-brand a:hover {
+  color: #FF6600;
+  font-size: 34px;
+  text-decoration: none;
+  font-family: 'Dancing Script', cursive;
+}
+
+.navbar-nav li, .navbar-nav a, .navbar-nav a:hover, .main-nav a:hover {
+  color: #402717;
+  text-decoration: none;
+  margin-top: 17px;
+  margin-left: 20px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+.navbar-notice {
+  position: absolute;
+  height: 20px;
+  color: red;
+  padding-top: 5%;
+  padding-left: 4%;
+}
+/* 共通部分(body/header/footer)終わり */
+
+/* 一覧表示ページ(index部分)始まり */
+#index {
+  width: 90%;
+  margin: 0 auto;
+}
+/*
+img {
+  width: 100%;
+  display: block;
+}
+*/
+.img-100 {
+  width: 100%;
+}
+
+.restaurant_form {
+  margin: 0px 0 10px 0;
+}
+
+.restaurant_form h2 {
+  color: #ffffff;
+  background-color: rgb(110, 169, 036);
+  display: inline;
+}
+
+.content {
+  background-color: #ffffff;
+  border: solid 2px #EEEEEE;
+  position: relative;
+}
+
+.content h3 {
+  color: #ffffff;
+  font-size: 20px;
+  background-color: #333333;
+  display: inline-block;
+  opacity: 0.8;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.content img:hover {
+  opacity: 0.8;
+}
+
+.content p {
+  border-bottom: 2px solid rgb(110, 169, 036);
+}
+
+h2 {
+  color: #ffffff;
+  background-color: #FF9933;
+}
+
+h3 {
+  margin-top: 15px;
+}
+
+.form-control {
+  width: 60%;
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.like_number {
+  color: #ffffff;
+  background-color: rgb(110, 169, 036);
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width:600px) {
+  h2 {
+    font-size: 25px;
+  }
+}
+
+#page_top{
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background: rgb(110, 169, 036);
+  opacity: 0.6;
+}
+#page_top a{
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+  border: solid 1px #ffffff;
+}
+#page_top a::before{
+  font-family: FontAwesome;
+  content: '\f102';
+  font-size: 25px;
+  color: #fff;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+}
+
+.spot_search {
+  margin-left: 10px;
+}
+
+/* 一覧表示ページ(index部分)終わり */
+
+/* GoogleMap marker(spot#index/user#show共通)始まり */
+.marker a {
+  color: #3333FF;
+}
+
+.marker a:hover {
+  border-bottom: 1px solid #3333FF;
+  padding-bottom: initial;
+  text-decoration: initial;
+}
+
+.spot_marker img {
+  width: 200px;
+}
+
+/* GoogleMap marker(spot#index/user#show共通)終わり */
+
+/* 新規投稿ページ(new部分)始まり */
+.new_image img {
+  width: 50%;
+  display: block;
+  margin: auto;
+}
+
+.new_image p {
+  text-align: center;
+}
+
+#new h2 {
+  margin: 30px 10px 0px 10px;
+}
+
+.spot_form {
+  background-color: #ffffff;
+  margin:  0px 10px 30px 10px;
+  padding: 0px 10px 20px 10px;
+}
+
+.spot_form dl {
+  margin: 0 auto;
+}
+
+.spot_form dl dt {
+  padding: 10px 0;
+}
+
+.spot_form dl dd {
+  padding: 10px 0;
+}
+
+.new_form {
+  border: 1px solid;
+  width: 280px;
+}
+
+.new_text_area_form {
+  width:  280px;
+  height: 200px;
+}
+
+.spot_form .required:after {
+  content: " * ";
+  color: #ff0000;
+}
+
+.spot_form .either:after {
+  content: " ☆ ";
+  color: #0000FF;
+}
+
+#readme h2 {
+  margin: initial;
+}
+
+@media screen and (max-width:600px) {
+  #spot_spot_photo {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width:560px) {
+  #spot_spot_photo {
+    width: 280px;
+  }
+}
+
+@media screen and (min-width:560px) {
+  #new h2 {
+    width: 500px;
+    display: block;
+    margin: auto;
+  }
+
+  #spot .spot_form dl {
+    width: initial;
+  }
+
+  .spot_form {
+    display: block;
+    margin: auto;
+  }
+}
+/* 新規投稿ページ(new部分)終わり */
+
+/* 一覧表示ページ(show部分)終わり */
+#detail img {
+  margin-top: 0;
+}
+
+#comment {
+  border-bottom: 2px solid #00FFFF;
+  padding-left: 50px; 
+}
+
+.btn {
+  margin: 10px;
+}
+
+span.error_m {
+  font-size: 15px;
+  font-weight: normal;
+  color: #FF4040;
+  display: block;
+  margin: 0;
+}
+
+@media screen and (min-width:600px) {
+  .picture_content img {
+    width: 100%;
+    display: block;
+    margin: auto;
+  }
+}
+/* 一覧表示ページ(show部分)終わり */

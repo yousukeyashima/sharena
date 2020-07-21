@@ -1,3 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h2>フォロー一覧</h2>
+
+      <table class="table">
+
+        <tr>
+         <th>ユーザー名</th>
+         <th>自己紹介文</th>
+         <th></th>
+        </tr>
+
+        <% @user.followers.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user_path(user.id) do %>
+              <%= attachment_image_tag user, :profile_image, size: "60x60", class:"img-circle" %>
+              <%= user.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= @user.introduction %>
+          </td>
+          <td>
+            <%= link_to user_path(user.id) do %>
+            詳細
+            <% end %>
+          </td>
+
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+<!--
 <% @user.followers.each do |user| %>
 <table>
 <tr>
@@ -7,3 +45,4 @@
 
 </table>
 <% end %>
+-->

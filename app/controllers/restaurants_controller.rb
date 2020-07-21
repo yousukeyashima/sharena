@@ -1,7 +1,61 @@
 class RestaurantsController < ApplicationController
 
   def index
-    @restaurants = Restaurant.all
+    #投稿絞り込みや地図絞り込みがない場合、全店表示
+    # if params[:restaurant].nil?
+    #   @latitude = 34.6873153
+    #   @longitude = 135.52620130000003
+    #   @restaurants = Restaurant.all
+    # else
+    #   if params[:place_search] == ""
+    #     @latitude = 34.6873153
+    #     @longitude = 135.52620130000003
+    #   else
+    #     @place_search = params[:restaurant][:address]
+    #     results = Geocoder.search("#{@place_search}")
+    #     #@latlng = results.first.coordinates
+    #     @latitude = results.first.latitude.to_f
+    #     @longitude = results.first.longitude.to_f
+    #     #@latitude = results.first.latitude.to_f
+    #     #@longitude = results.first.longitude.to_f
+    #   end
+
+      # #投稿絞り込み
+      # if params[:example] == "1"
+      #   @restaurants = Restaurant.all
+      # elsif params[:example] == "2"
+      #   #@user  = User.find_by(id: current_user.id)
+      #   @users = current_user.followed
+      #   @restaurants = []
+      #   if @users.present?
+      #     @users.each do |user|
+      #       restaurants = Restaurant.where(user_id: user.id)
+      #       @restaurants.concat(restaurants)
+      #     end
+      #   end
+      # elsif params[:example] == "3"
+      #   #@user = User.find_by(id: current_user.id)
+      #   @favorites = current_user.favorites
+      #   #@restaurants = @favorites.restaurant
+      #   @restaurants = @favorites.map{|favorite| favorite.restaurant}
+      # else
+      #   redirect_to restaurants_path
+      # end
+
+      # end
+      @restaurants = Restaurant.all
+    #現在地を取得
+    if params[:latitude].nil? && params[:longitude].nil?
+      @latitude = 34.6873153
+      @longitude = 135.52620130000003
+      @zoom = 11
+    else
+      @latitude = params[:latitude].to_f
+      @longitude = params[:longitude].to_f
+      @zoom = 17
+    end
+
+    #地図とマーカーをセット
     @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude
@@ -9,8 +63,29 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def catalog
+  end
+
+  def search_location
+    if params[:latitude].nil? && params[:longitude].nil?
+      @latitude = 34.6873153
+      @longitude = 135.52620130000003
+    else
+        @latitude = params[:latitude].to_f
+        @longitude = params[:longitude].to_f
+      end
+        #@locations = Restaurant.within_box(0.5, @latitude, @longitude)
+        @restaurants = Restaurant.all
+        @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+          marker.lat restaurant.latitude
+          marker.lng restaurant.longitude
+          marker.infowindow render_to_string(partial: "restaurants/infowindow", locals: {restaurant: restaurant})
+        end
+  end
+
   def show
     @restaurant = Restaurant.find(params[:id])
+    @user = User.find_by(id: @restaurant.user_id)
     @comment = PostComment.new
     @comments =@restaurant.post_comments.order(created_at: :desc) #新着順で表示
     #mapにmarker設置
@@ -57,6 +132,6 @@ class RestaurantsController < ApplicationController
 
   private
   def restaurant_params
-    params.require(:restaurant).permit(:name, :restaurant_image, :description, :address)
+    params.require(:restaurant).permit(:name, :restaurant_image, :description, :address, :place_search)
   end
 end

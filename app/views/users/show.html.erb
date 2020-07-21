@@ -1,8 +1,96 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<% @restaurants.each do |restaurant| %>
-<%= restaurant.name %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-8">
+      <h2><%= @user.name %>さんのページ</h2>
+<div class="content">
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="user-edits">
+          <h4 class="sideby">登録情報</h4>
+          <% if @user.id == current_user.id %>
+            <%= link_to "編集", edit_user_path, class: "btn btn-default sideby" %>
+          <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <!--<div class="col-md-1">
+          </div>
+        -->
+          <div class="col-md-6">
+            <table class="table">
+              <tr>
+                <th class="th-bypage"><div class="text-center">名前</div></th>
+                <td><div class="text-center"><%= @user.name %></div></td>
+              </tr>
+              <tr>
+                <th class="th-bypage">
+                  <div class="text-center">投稿数</div>
+                </th>
+                <td><div class="text-center">
+                  <i class="fa fa-cutlery" aria-hidden="true"></i><%= @user.restaurants.count %></div>
+                </td>
+              </tr>
+              <tr>
+                <th class="th-bypage">
+                  <div class="text-center">いいねした数</div>
+                </th>
+                <td><div class="text-center">
+                  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i><%= @user.favorites.count %></div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-md-3 offset-md-6">
+            <%= attachment_image_tag @user, :profile_image, size: "140x140", fallback: "no_image.jpg", class:"img-circle" %>
+          </div>
+          <div class="row">
+            <div class="panel panel-default text-center border-dark mt-3 col-md-10">
+              <div class="panel-heading text-primary">
+                自己紹介
+              </div>
+              <div class="panel-body">
+               <!-- <p class="panel-text"><%= @user.introduction %></p> -->
+               <%= @user.introduction %>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-6">
+            <div class="user-edits">
+              <div id ="follow">
+                <%= link_to followed_user_path(@user.id) do %>
+                <h4 class="sideby">
+                  フォロー<%= @user.followed.count %>人
+                </h4>
+                <% end %>
+                <br>
+              </div>
+              <div id="follower">
+                <%= link_to followers_user_path(@user.id) do %>
+                <h4 class="sideby">フォロワー<%= @user.followers.count %>人</h4>
+                <% end %>
+              </div>
+              <div>
+              <%= render "follow_form" %>
+              </div><br>
+            </div>
+          </div>
+        </div>
+</div>
+      </div>
+  </div>
+</div>
+
+<h4><%= @user.name %>さんの投稿がマップに表示されます</h4>
+
 <div id="map">
 </div>
 
@@ -24,19 +112,25 @@
   });
 </script>
 
-<!-- フォロー機能 -->
-<div class="follower">
-      <%= link_to followers_user_path(@user.id) do %>
-          <h5 style="color: black;">フォロワー<%= @user.followers.count %>人</h5>
-      <% end %>
-  </div>
-  <div class="follow">
-      <%= link_to followed_user_path(@user.id) do %>
-                <h5 style="color: black;">フォロー<%= @user.followed.count %>人</h5>
-      <% end %>
-  </div>
-  <div>
-      <%= render "follow_form" %>
-  </div>
-
-
+<article id ="index">
+  <div class="container">
+    <div class="row">
+      <section class="restaurants col-md-12">
+        <h2><%= @user.name %>さんの最近の投稿</h2>
+        <div class="row">
+          <% @restaurants.order(created_at: "DESC").each do |restaurant| %>
+          <div class="content col-md-3">
+            <p><%= attachment_image_tag restaurant, :restaurant_image, size: "170x170", class: "img-100 pull-left profile-thumb", fallback: "no_image.jpg" %></p>
+            <p>店名：<%= restaurant.name %></p>
+            <p>住所：<%= restaurant.address %></p>
+            <p>投稿者：<%= restaurant.user.name %></p>
+            <p><%= link_to restaurant_path(restaurant) do %>
+              詳細
+              <% end %></p>
+            </div>
+            <% end %>
+          </div>
+        </section>
+      </div>
+    </div>
+    </article>
