@@ -350,11 +350,15 @@ h3 {
 
 #comment {
   border-bottom: 2px solid #00FFFF;
-  padding-left: 50px; 
+  padding-left: 50px;
 }
 
 .btn {
   margin: 10px;
+}
+
+.more {
+  cursor: pointer;
 }
 
 span.error_m {
