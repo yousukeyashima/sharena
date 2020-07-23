@@ -109,8 +109,6 @@
     markers = handler.addMarkers(<%= raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
-    // handler.getMap().setCenter(new google.maps.LatLng(<%= @latitude %>, <%= @longitude %>)); //初期位置設定
-    // handler.getMap().setZoom(15); //拡大率設定
   });
 </script>
 
@@ -132,7 +130,7 @@
             </div>
             <% end %>
           </div>
-        </section>
-      </div>
+      </section>
     </div>
-    </article>
+  </div>
+</article>

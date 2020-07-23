@@ -47,36 +47,3 @@
     </div>
   </div>
 </div>
-
-<!--
-<h3>プロフィール編集</h3>
-<%= form_with model: @user, url: user_path(params[:id]), method: :put, local: true do |f| %>
-  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, id: :img_prev, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %><br>
-  <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", id: :user_img, class: "user-edit-form" %> 
-
-  <script type="text/javascript">
-		$(function() {
- 		  function readURL(input) {
-   		if (input.files && input.files[0]) {
-     	  var reader = new FileReader();
-     	  reader.onload = function (e) {
-        $('#img_prev').attr('src', e.target.result);
-     	  }
-     	 reader.readAsDataURL(input.files[0]);
-   		}
- 	   }
- 		$("#user_img").change(function(){
-   	 	  readURL(this);
- 	   });
-	  });
-	</script>
-
-  <%= f.label :name, 'ユーザー名' %>
-  <%= f.text_field :name, placeholder: @user.name %>
-
-  <%= f.label :introduction, '自己紹介' %>
-  <%= f.text_area :introduction, placeholder: "例）100文字以内" %>
-
-  <%= f.submit "変更を保存", class: "btn btn-lg btn-block btn-base-1 mt-20" %>
-<% end %>
--->

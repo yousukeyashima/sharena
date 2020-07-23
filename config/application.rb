@@ -12,10 +12,10 @@ module Sharena
     config.load_defaults 5.2
 
     #表示Time_zone
-    config.time_zone = 'Tokyo'
+    #config.time_zone = 'Tokyo'
 
     #DB保存時間をlocal(Tokyo)にする
-    config.active_record.default_timezone = :default_locale
+    #config.active_record.default_timezone = :default_locale
 
     #エラーメッセージの日本語化
     config.i18n.default_locale = :ja

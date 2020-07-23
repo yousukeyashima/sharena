@@ -1,5 +1,7 @@
-<!-- <h2>トップページ</h2>
- -->
+<h2>トップページ</h2>
+
+<%= render "map" %>
+<%= render "getposition" %>
 
 <article id ="index">
   <div class="container">
@@ -7,7 +9,7 @@
       <section class="restaurants col-md-12">
         <h2>最近の投稿</h2>
         <div class="row">
-          <% @restaurants.order(created_at: "DESC").each do |restaurant| %>
+          <% @restaurants.order(created_at: "DESC").first(8).each do |restaurant| %>
           <div class="content col-md-3">
             <p><%= attachment_image_tag restaurant, :restaurant_image, size: "170x170", class: "img-100 pull-left profile-thumb", fallback: "no_image.jpg" %></p>
             <p>店名：<%= restaurant.name %></p>
@@ -21,11 +23,7 @@
             </div>
             <% end %>
           </div>
-          <div class="row">
-            <%= paginate @restaurants %>
-          </div>
         </section>
       </div>
     </div>
-
 </article>

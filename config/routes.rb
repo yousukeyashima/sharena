@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'abouts/index'
   devise_for :users
   resources :users, only: [:show, :edit, :update] do
     member do
@@ -7,10 +8,10 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
 
-  get '/restaurants/search_location', to: "restaurants#search_location"
+  get '/about', to: "abouts#index"
 
-  root 'restaurants#index'
-  get '/map_request', to: 'restaurants#map', as: 'map_request'
+  root 'restaurants#top'
+
   resources :restaurants do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]

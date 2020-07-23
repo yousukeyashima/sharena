@@ -1,4 +1,5 @@
 <% if user_signed_in? %>
+  <p>いいね！：
     <% if current_user.already_favorited?(restaurant) %>
         <%= link_to restaurant_favorites_path(restaurant), method: :delete, remote: true do %>
             <i class="fa fa-heart" aria-hidden="true" style="color: red;">
@@ -12,8 +13,9 @@
             </i>
         <% end %>
     <% end %>
-<% else %>
+    <% else %>
     <i class="fa fa-heart" aria-hidden="true">
             <%= restaurant.favorites.count %>
     </i>
+  </p>
 <% end %>

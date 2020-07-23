@@ -4,7 +4,7 @@
   <h2><%= @restaurant.name %></h2>
     <% if current_user %>
       <% if @user.id == current_user.id %>
-        <%= link_to "編集", edit_restaurant_path(@restaurant.id), class: "btn btn-default sideby" %>
+        <%= link_to "編集", edit_restaurant_path(@restaurant.id), class: "btn btn-primary" %>
         <%= link_to "投稿を削除", restaurant_path(@restaurant.id), method: :delete, data: { confirm: "一度削除すると元には戻せません。本当に削除してもいいですか？"}, class: "btn btn-danger pull-right" %>
       <% end %>
     <% end %>
@@ -16,14 +16,25 @@
   </div>
   </div>
     <p>
-      <strong>投稿者:</strong>
-      <%= link_to user_path(@user) do %>
-      <%= @user.name %>
-      <% end %>
+      <strong>説明文：</strong>
+      <%= @restaurant.description %>
     </p>
 
     <p>
-      <strong>住所:</strong>
+      <strong>投稿者：</strong>
+      <%= link_to user_path(@user) do %>
+      <%= @user.name %>
+      <% end %>
+      <%= attachment_image_tag @user, :profile_image, size: "40x40", fallback: "no_image.jpg", class:"img-circle" %>
+    </p>
+
+    <!-- いいね機能 -->
+    <div id="show_favorite_<%= @restaurant.id %>">
+      <%= render 'favorites/favorite', restaurant: @restaurant %>
+    </div>
+
+    <p>
+      <strong>住所：</strong>
       <%= @restaurant.address %>
     </p>
 
@@ -49,32 +60,19 @@
       });
     </script>
 
-    <p>
-      <strong>説明文：</strong>
-      <%= @restaurant.description %>
-    </p>
-
-    <!-- いいね機能 -->
-    <div id="show_favorite_<%= @restaurant.id %>">
-      <%= render 'favorites/favorite', restaurant: @restaurant %>
-    </div>
-
     <!-- コメント機能 -->
-    <p><strong>コメント:</strong></p>
+    <p><strong>コメント：</strong></p>
     <div id="comments_area">
       <div class="">
           <ul>
-              <!-- <li class="comment-create">
-                  <h3 class="text-left title">レビュー</h3>
-              </li> -->
-              <li id="comments_area">
-                  <%= render partial: 'post_comments/index', locals: { post_comments: @comments } %>
-              </li>
+            <li id="comments_area">
+              <%= render partial: 'post_comments/index', locals: { post_comments: @comments } %>
+            </li>
           </ul>
           <hr>
           <% if user_signed_in? %>
               <div class="comment-create">
-                  <!--<h3 class="text-left">レビューを投稿する</h3>-->
+                  <h5 class="text-left">コメントを投稿する</h5>
                   <%= render partial: 'post_comments/form', locals: { post_comment: @comment, restaurant: @restaurant } %>
               </div>
           <% end %>

@@ -8,7 +8,7 @@
       navigator.geolocation.getCurrentPosition(
         // 取得成功した場合
         function(position) {
-            window.location.href = "/restaurants?latitude="+position.coords.latitude+"&longitude="+position.coords.longitude
+            window.location.href = "/?latitude="+position.coords.latitude+"&longitude="+position.coords.longitude
         },
         // 取得失敗した場合
         function(error) {
