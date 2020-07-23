@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   #いいね機能
   has_many :favorites, dependent: :destroy
+  has_many :favorite_restaurants, through: :favorites, source: :restaurant
   # フォロー機能
   has_many :followed_relationships, foreign_key: "follower_id", class_name: "Relationship",  dependent: :destroy
   has_many :followed, through: :followed_relationships

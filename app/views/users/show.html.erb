@@ -1,9 +1,11 @@
+<h2><%= @user.name %>さんのページ</h2>
+
 <div class="container">
   <div class="row">
     <div class="col-md-1">
     </div>
     <div class="col-md-8">
-      <h2><%= @user.name %>さんのページ</h2>
+
 <div class="content">
       <div class="row">
         <div class="col-md-2">
@@ -12,7 +14,7 @@
           <h4 class="sideby">登録情報</h4>
           <% if current_user %>
           <% if @user.id == current_user.id %>
-            <%= link_to "編集", edit_user_path, class: "btn btn-default sideby" %>
+            <%= link_to "編集", edit_user_path, class: "btn btn-primary" %>
           <% end %>
           <% end %>
           </div>
@@ -91,7 +93,7 @@
   </div>
 </div>
 
-<h4><%= @user.name %>さんの投稿がマップに表示されます</h4>
+<h4><%= @user.name %>さんの投稿＆いいねした投稿がマップに表示されます</h4>
 
 <div id="map">
 </div>
@@ -123,9 +125,38 @@
             <p><%= attachment_image_tag restaurant, :restaurant_image, size: "170x170", class: "img-100 pull-left profile-thumb", fallback: "no_image.jpg" %></p>
             <p>店名：<%= restaurant.name %></p>
             <p>住所：<%= restaurant.address %></p>
-            <p>投稿者：<%= restaurant.user.name %></p>
+            <p>投稿者：<%= link_to user_path(restaurant.user_id) do %>
+              <%= restaurant.user.name %>
+              <% end %>
+                <%= attachment_image_tag restaurant.user, :profile_image, size: "40x40", fallback: "no_image.jpg", class:"img-circle" %>
+            </p>
             <p><%= link_to restaurant_path(restaurant) do %>
-              詳細
+              詳細を見る
+              <% end %></p>
+            </div>
+            <% end %>
+          </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <section class="restaurants col-md-12">
+        <h2><%= @user.name %>さんがいいねした投稿</h2>
+        <div class="row">
+          <% current_user.favorite_restaurants.order(created_at: "DESC").each do |restaurant| %>
+          <div class="content col-md-3">
+            <p><%= attachment_image_tag restaurant, :restaurant_image, size: "170x170", class: "img-100 pull-left profile-thumb", fallback: "no_image.jpg" %></p>
+            <p>店名：<%= restaurant.name %></p>
+            <p>住所：<%= restaurant.address %></p>
+            <p>投稿者：<%= link_to user_path(restaurant.user_id) do %>
+              <%= restaurant.user.name %>
+              <% end %>
+                <%= attachment_image_tag restaurant.user, :profile_image, size: "40x40", fallback: "no_image.jpg", class:"img-circle" %>
+            </p>
+            <p><%= link_to restaurant_path(restaurant) do %>
+              詳細を見る
               <% end %></p>
             </div>
             <% end %>

@@ -1,5 +1,5 @@
 <ul>
   <li><h4><%= link_to restaurant.name, restaurant_path(restaurant.id) %></h4></li>
-  <li><%= attachment_image_tag restaurant, :restaurant_image, :fill, 90, 90 %></li>
+  <li><%= attachment_image_tag restaurant, :restaurant_image, size: "90x90", fallback: "no_image.jpg" %></li>
   <li><%= link_to "GoogleMapで開く", "https://maps.google.co.jp/maps?q=loc:#{restaurant.latitude},#{restaurant.longitude}&iwloc=J",target: "_blank" %></li>
 </ul>

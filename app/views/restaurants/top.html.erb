@@ -16,7 +16,9 @@
             <p>住所：<%= restaurant.address %></p>
             <p>投稿者：<%= link_to user_path(restaurant.user_id) do %>
               <%= restaurant.user.name %>
-              <% end %></p>
+              <% end %>
+                <%= attachment_image_tag restaurant.user, :profile_image, size: "40x40", fallback: "no_image.jpg", class:"img-circle" %>
+              </p>
             <p><%= link_to restaurant_path(restaurant) do %>
               詳細を見る
               <% end %></p>

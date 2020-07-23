@@ -4,7 +4,8 @@ class UsersController < ApplicationController
 
   def show
     @restaurants = Restaurant.where(user_id: @user.id)
-    @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+    @favorite_restaurants = @user.favorite_restaurants
+    @hash = Gmaps4rails.build_markers(@restaurants + @favorite_restaurants) do |restaurant, marker|
       marker.lat restaurant.latitude
       marker.lng restaurant.longitude
       marker.infowindow render_to_string(partial: "restaurants/infowindow", locals: {restaurant: restaurant})
