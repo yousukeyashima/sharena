@@ -4,7 +4,7 @@ lock "~> 3.14.1"
 set :application, "sharena"
 set :repo_url, "https://github.com/yousukeyashima/sharena.git"
 
-set :deploy_to, "/home/ec2-user/hsharena"
+set :deploy_to, "/home/ec2-user/sharena"
 set :rbenv_ruby, '2.5.7'
 set :linked_files, %w{config/master.key .env}
 append :linked_dirs, "log", "public/system", "tmp"
