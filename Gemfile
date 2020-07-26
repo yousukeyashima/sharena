@@ -77,6 +77,7 @@ gem 'kaminari-bootstrap','~> 3.0.1'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'rails-i18n'
+gem 'ransack'
 
 #deploy
 gem 'dotenv-rails'

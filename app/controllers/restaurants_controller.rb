@@ -4,7 +4,8 @@ class RestaurantsController < ApplicationController
   PER = 16
 
   def top
-    @restaurants = Restaurant.all
+    @q = Restaurant.ransack(params[:q])
+    @restaurants = @q.result(distinct: true).page(params[:page]).per(PER)
     #現在地を取得
     if params[:latitude].nil? && params[:longitude].nil?
       @latitude = 34.6873153
@@ -25,7 +26,8 @@ class RestaurantsController < ApplicationController
   end
 
   def index
-    @restaurants = Restaurant.page(params[:page]).per(PER)
+    @q = Restaurant.ransack(params[:q])
+    @restaurants = @q.result(distinct: true).page(params[:page]).per(PER)
   end
 
   def show

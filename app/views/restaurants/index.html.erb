@@ -1,5 +1,15 @@
-<!-- <h2>トップページ</h2>
- -->
+<div class="container">
+  <div clss="row">
+    <div class="search text-right">
+      <h4>ユーザー名や店名で検索を行う</h4>
+       <%= search_form_for @q do |f| %>
+       <%= f.label :name, "ユーザー名 or 店名" %>
+       <%= f.search_field :name_or_user_name_cont %>
+       <%= f.submit "検索", class: "btn btn-primary" %>
+       <% end %>
+    </div>
+  </div>
+</div>
 
 <article id ="index">
   <div class="container">
