@@ -5,9 +5,9 @@
 <div class="container">
   <div clss="row">
      <div class="search">
-      <h4>ユーザー名や店名で検索を行う</h4>
+      <h4>(ユーザー名・店名・地名)で検索を行う</h4>
        <%= search_form_for @q, url: root_path do |f| %>
-       <%= f.search_field :name_or_user_name_cont %>
+       <%= f.search_field :name_or_user_name_or_address_cont %>
        <%= f.submit "検索", class: "btn btn-primary" %>
        <% end %>
        <p><strong>or</strong></p>
