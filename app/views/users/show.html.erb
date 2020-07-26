@@ -145,7 +145,7 @@
       <section class="restaurants col-md-12">
         <h2><%= @user.name %>さんがいいねした投稿</h2>
         <div class="row">
-          <% current_user.favorite_restaurants.order(created_at: "DESC").each do |restaurant| %>
+          <% @user.favorite_restaurants.order(created_at: "DESC").each do |restaurant| %>
           <div class="content col-md-3">
             <p><%= attachment_image_tag restaurant, :restaurant_image, size: "170x170", class: "img-100 pull-left profile-thumb", fallback: "no_image.jpg" %></p>
             <p>店名：<%= restaurant.name %></p>
