@@ -12,6 +12,8 @@ class Restaurant < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   #いいね機能
   has_many :favorites, dependent: :destroy
+  #タグ
+  has_many :tags, dependent: :destroy
 
   validates :name, presence: true
   validates :address, presence: true

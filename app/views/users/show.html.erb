@@ -124,6 +124,11 @@
           <div class="content col-md-3">
             <p><%= attachment_image_tag restaurant, :restaurant_image, size: "170x170", class: "img-100 pull-left profile-thumb", fallback: "no_image.jpg" %></p>
             <p>店名：<%= restaurant.name %></p>
+            <p>
+              <% restaurant.tags.first(3).each do |tag| %>
+                <span class="label label-primary"><%= tag.name %></span>
+              <% end %>
+            </p>
             <p>住所：<%= restaurant.address %></p>
             <p>投稿者：<%= link_to user_path(restaurant.user_id) do %>
               <%= restaurant.user.name %>
@@ -149,6 +154,11 @@
           <div class="content col-md-3">
             <p><%= attachment_image_tag restaurant, :restaurant_image, size: "170x170", class: "img-100 pull-left profile-thumb", fallback: "no_image.jpg" %></p>
             <p>店名：<%= restaurant.name %></p>
+            <p>
+              <% restaurant.tags.first(3).each do |tag| %>
+                <span class="label label-primary"><%= tag.name %></span>
+              <% end %>
+            </p>
             <p>住所：<%= restaurant.address %></p>
             <p>投稿者：<%= link_to user_path(restaurant.user_id) do %>
               <%= restaurant.user.name %>

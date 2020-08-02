@@ -16,6 +16,13 @@
   </div>
   </div>
     <p>
+      <strong>タグ：</strong>
+      <% @restaurant.tags.each do |tag| %>
+        <span class="label label-primary"><%= tag.name %></span>
+      <% end %>
+    </p>
+
+    <p>
       <strong>説明文：</strong>
       <%= @restaurant.description %>
     </p>

@@ -10,6 +10,8 @@ module Sharena
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    #google vision API
+    config.paths.add 'lib', eager_load: true
 
     #表示Time_zone
     #config.time_zone = 'Tokyo'

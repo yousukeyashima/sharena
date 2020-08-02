@@ -53,6 +53,10 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.user_id = current_user.id
     if @restaurant.save
+      tags = Vision.get_image_data(@restaurant.restaurant_image)
+      tags.each do |tag|
+        @restaurant.tags.create(name: tag)
+      end
       redirect_to root_path
     else
       render :new
